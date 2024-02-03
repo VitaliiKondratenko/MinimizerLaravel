@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('links', function (Blueprint $table) {
             $table->id();
-            $table->string('short_key', '20')->unique();
+            $table->string('short_key', '12')->unique();
             $table->string('link');
             $table->timestamp('modified_at')->useCurrent()->useCurrentOnUpdate();
             $table->timestamp('created_at')->useCurrent();
