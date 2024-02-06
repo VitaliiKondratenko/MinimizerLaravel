@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\Interfaces\LinkServiceInterface;
 use Illuminate\Http\Request;
 
-class MainCotroller extends Controller
+class MainController extends Controller
 {
     protected $linkService;
 
@@ -20,7 +20,8 @@ class MainCotroller extends Controller
     }
 
     public function redirect($key){
-        $linkObject = $this->linkService->getByShortKey($key);
+        dd(urldecode($key));
+        $linkObject = $this->linkService->getByShortKey(urldecode($key));
         return redirect($linkObject->link);
     }
 }

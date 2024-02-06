@@ -2,12 +2,11 @@
 
 namespace App\Http\Services;
 
-use App\Enums\DictionaryEnum;
 use App\Exceptions\LinkRepositoryException;
+use App\Http\LinksHelper;
 use App\Http\Services\Interfaces\LinkServiceInterface;
 use App\Models\Repositories\Interfaces\LinkRepositoryInterface;
-use Illuminate\Database\Query\Builder;
-use App\Exceptions\LinkServiceException;
+use App\Exceptions\LinkHelperException;
 
 class LinkService implements LinkServiceInterface
 {
@@ -23,41 +22,25 @@ class LinkService implements LinkServiceInterface
             return $this->linkRepository->getByShortKey($shortKey);
         }
         catch (LinkRepositoryException $e){
-            dd($e->getMessage());
+            return $e->getMessage();
         }
     }
 
     public function store(array $store)
     {
         try{
-            $store['short_key'] = $this->generateShortKey();
-            dump(env("APP_URL").'/'.$store['short_key']);
+            $store['short_key'] = LinksHelper::generateShortKey();
+
         }
-        catch (LinkServiceException $e){
-            dd($e->getMessage());
+        catch (LinkHelperException $e){
+            return $e->getMessage();
         }
         try{
             return $this->linkRepository->store($store);
         }
         catch (LinkRepositoryException $e){
-            dd($e->getMessage());
+            return $e->getMessage();
         }
-    }
-
-    protected function generateShortKey(): string
-    {
-        $time = time();
-        $key = '';
-        $mt = explode(' ',microtime());
-        $mt = explode('.',$mt[0]);
-        $mt = str_split($mt[1], 2);
-        $time .= $mt[0];
-        foreach (str_split($time, 2) as $item){
-            if(!isset(DictionaryEnum::DICTIONARY[$item]))
-                throw new LinkServiceException("Error generating short key");
-            $key .= DictionaryEnum::DICTIONARY[$item];
-        }
-        return $key;
     }
 
 }

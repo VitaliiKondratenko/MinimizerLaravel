@@ -17,5 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('link-minifier', [\App\Http\Controllers\MainCotroller::class, 'index']);
-Route::get('{key}', [\App\Http\Controllers\MainCotroller::class, 'redirect']);
+Route::get('link-minifier', [\App\Http\Controllers\MainController::class, 'index']);
+Route::get('{key}', [\App\Http\Controllers\MainController::class, 'redirect']);
