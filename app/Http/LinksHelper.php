@@ -4,8 +4,9 @@ namespace App\Http;
 
 use App\Enums\DictionaryEnum;
 use App\Exceptions\LinkHelperException;
+use App\Http\Services\Interfaces\LinksHelperInterface;
 
-class LinksHelper
+class LinksHelper implements LinksHelperInterface
 {
     public static function generateShortKey(): string
     {

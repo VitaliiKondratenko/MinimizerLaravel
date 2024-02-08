@@ -20,7 +20,6 @@ class MainController extends Controller
     }
 
     public function redirect($key){
-        dd(urldecode($key));
         $linkObject = $this->linkService->getByShortKey(urldecode($key));
         return redirect($linkObject->link);
     }
