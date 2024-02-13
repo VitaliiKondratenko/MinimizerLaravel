@@ -22,8 +22,7 @@ class LinkService implements LinkServiceInterface
             return $this->linkRepository->getByShortKey($shortKey);
         }
         catch (LinkRepositoryException $e){
-             echo $e->getMessage();
-             die();
+            abort(404);
         }
     }
 
@@ -34,15 +33,13 @@ class LinkService implements LinkServiceInterface
 
         }
         catch (LinkHelperException $e){
-            echo $e->getMessage();
-            die();
+            abort(404);
         }
         try{
             return $this->linkRepository->store($store);
         }
         catch (LinkRepositoryException $e){
-            echo $e->getMessage();
-            die();
+            abort(404);
         }
     }
 
