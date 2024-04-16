@@ -6,6 +6,7 @@ use App\Http\Services\Interfaces\LinkServiceInterface;
 use App\Http\Services\LinkService;
 use App\Models\Repositories\Interfaces\LinkRepositoryInterface;
 use App\Models\Repositories\LinkRepository;
+use App\Models\Repositories\LinkRepositoryMongo;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(LinkServiceInterface::class, LinkService::class);
-        $this->app->bind(LinkRepositoryInterface::class, LinkRepository::class);
+        $this->app->bind(LinkRepositoryInterface::class, LinkRepositoryMongo::class);
     }
 
     /**

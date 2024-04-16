@@ -16,6 +16,7 @@ return [
     */
 
     'default' => env('DB_CONNECTION', 'mysql'),
+//    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -91,6 +92,14 @@ return [
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+        ],
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'host' => env('DB_MONGO_HOST', 'mongo'),
+            'port' => env('DB_MONGO_PORT', 27017),
+            'database' => env('DB_DATABASE_MONGO', 'LinkMinifier'),
+            'username' => env('DB_MONGO_PASSWORD', ''),
+            'password' => env('DB_MONGO_PASSWORD', ''),
         ],
 
     ],
